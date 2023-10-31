@@ -1,0 +1,53 @@
+MYSQL Assignment
+Iexcel Always
+•
+Oct 11 (Edited Oct 13)
+100 points
+TABLE DESCRIPTIONS
+
+The following set of tables make up a database that is used by a booking agency to book hotel reservations for their client hotels. Attributes that are underscored make up the primary key for that table.
+
+Type of room is a one-character code that refers to smoking (S) or non-smoking (N). Price refers to the price of the room per night.
+
+In Room table Hotel_No and Room_No combined makes the primary_key
+
+
+Hotel                (Hotel_No, Name, City)
+
+Room               (Room_No, HotelNo, Type, Price)
+
+Booking            (Hotel_No, GuestNo, Date_From, Date_To, Room_No)
+
+Guest               (Guest_No, Name, City)
+ 
+
+For every table, it is up to you to decide which is the appropriate datatype for each one of the columns based on the column descriptions given above. If you make assumptions that affect the way you define the columns, please note those assumptions in your assignment.
+
+
+Alter the table Room and rename the column hotelno to hotel_no
+Alter the table Room and make the Type column default value to (N) non smoking
+Alter the table Booking and add column created_date with datatype datetime and default value to system timestamp
+Alter the table guest and add column gender
+
+Rename table Hotel to Hotels
+
+Alter table guest and remove the column gender
+
+
+Solve the queries and put the select statements in a notepad file and upload
+
+1.      List full details of all hotels.
+2.      List full details of all hotels in New York.
+3.      List the names and cities of all guests, ordered according to their cities.
+4.      List all details for non-smoking rooms in ascending order of price.
+5.      List the number of hotels there are.
+6.      List the cities in which guests live. Each city should be listed only once.
+7.      List the average price of a room.
+8.      List hotel names, their room numbers, and the type of that room.
+9.      List the hotel names, booking dates, and room numbers for all hotels in New York.
+10.  What is the number of bookings that started in the month of September?
+11.  List the names and cities of guests who began a stay in New York in August.
+12.  List the hotel names and room numbers of any hotel rooms that have not been booked.
+13.  List the hotel name and city of the hotel with the highest priced room.
+14.  List hotel names, room numbers, cities, and prices for hotels that have rooms with prices lower than the lowest priced room in a Boston hotel.
+15.  List the average price of a room grouped by city.

@@ -1,0 +1,83 @@
+select ins_name,ins_regno,ins_affiliated from institute;
+
+select ins_name as "Institute" , ins_regno "Registration Details" , ins_affiliated "Affiliated" from institute;
+
+select ins.* from institute ins;
+
+select count(*) from institute;
+
+select count(ins_name) from institute
+
+select count(updated_dt) from institute;
+
+select count(distinct created_by) from institute;
+
+select distinct created_by from institute;
+
+select now();
+
+select 799*799 from dual;
+
+select concat("Parag", ' ',"Joshi") as "fullname";
+
+select concat(state,' ',city,' ',country) "Address" from contact_details;
+
+select count(distinct city),count(distinct state), count(distinct country) from contact_details;
+
+select distinct city, state,country from contact_details;
+
+select length(ins_name) from institute;
+
+select sin(-1), cos(-1), asin(-1), acos(-1)
+
+select ceil(39.15), floor(39.9) ,round(39.49),round(39.50),round(39.499975,2),,round(39.499475,3)
+
+select mod(5,2),pow(2,5),sqrt(16);
+
+select format(5838383.383838,3) ;
+
+select greatest(10,12,15,5,6,8), least(10,12,15,5,6,8);
+
+select max(ins_id), min(ins_id) from institute;
+
+select truncate(123.4567,3) 
+
+
+select max(tsalary),min(tsalary),sum(tsalary),floor(avg(tsalary)) from trainer;
+
+select * from institute order by ins_name;
+
+select * from institute order by ins_name desc;
+
+select * from trainer order by tlname desc,tsalary asc;
+
+select concat(tfname,' ',ifnull(tmname,''), ' ', tlname) "FullName" from trainer;
+
+select concat_Ws('-', tfname,tlname) from trainer;
+
+select concat_ws(',', city,state,country,pincode) from contact_details;
+
+select substring_index(ins_name, ' ',1) from institute;
+
+select substring_index(ins_name, ' ',2) from institute;
+
+select substring_index(ins_name, ' ',-1) from institute;
+
+select replace(created_by,'root@localhost','Root') from institute;
+
+select cemail,instr(cemail,'@') from contact_details;
+
+select left(cemail,5) from contact_details;
+
+select upper(left(cemail,instr(cemail,'@') -1)) from contact_details;
+
+select ins_name, lower(ins_name) from institute;
+
+select reverse(cemail) from contact_Details;
+
+select right(cemail,) from contact_details;
+
+select length('             asfdsafsaf             '), length(trim('             asfdsafsaf             ') ) ;
+
+select substring(cemail,instr(cemail,'@')+1) from contact_details;
+

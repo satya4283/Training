@@ -1,0 +1,12 @@
+
+6.1 List all the scientists' names, their projects' names, and the hours worked by that scientist on each project, 
+    in alphabetical order of project name, then scientist name.
+
+	select s.name,p.name,p.Hours from scientists s inner join assignedto a on a.Scientist=s.SSN inner join projects p on a.Project=p.Code order by s.name,p.name;
+    
+    
+6.2 Select the project names which are not assigned yet
+
+	select p.name from projects p where p.code not in (select Project from assignedto);
+
+	

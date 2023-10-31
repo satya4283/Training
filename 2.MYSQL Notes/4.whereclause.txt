@@ -1,0 +1,51 @@
+select * from trainer where upper(tlname)='JOSHI';
+select * from trainer where tlname = 'Joshi';
+select * from trainer where tmname is not null;
+select * from trainer where tmname is null;
+select tfname,tsalary from trainer where tsalary > 100000;
+select tfname,tsalary from trainer where tsalary >= 100000;
+select tfname,tsalary from trainer where tsalary <= 100000;
+select tfname,tsalary from trainer where tsalary < 100000;
+select tfname,tsalary from trainer where tsalary != 100000;
+select * from trainer where tlname != 'Joshi';
+select * from contact_details where cemail like '%chennai%';
+select * from trainer where tfname like 'P%';
+select * from trainer where tfname like '%e';
+select * from trainer where tfname like '___a%';
+select * from trainer where trole like '%trainer%' and tsalary > 100000;
+select * from trainer where trole like '%trainer%' or tsalary > 100000
+select * from trainer where trole not like '%trainer%'
+select * from trainer where trole like '%trainer%' and tsalary > 100000 or tlname ='Joshi' 
+select * from trainer where trole like '%trainer%' and tsalary > 100000 and tlname ='Joshi'
+select tfname,year(tdob) from trainer where year(tdob) = 1981;
+select tfname,tdob from trainer where year(tdob) between 1998 and 2002;
+select tfname,tdob from trainer where year(tdob) between 1998 and 2002 order by tdob;
+select * from trainer where tmname is null;
+select * from contact_details where city in ('Chennai','Pune');
+select * from contact_details where city not in ('Chennai','Pune');
+select * from trainer where tdob between '1981-08-25' and '1998-12-25'; 
+select * from institute where created_dt = '2023-10-12' ;
+select * from institute where created_dt = '2023-10-12 10:47:58' ;
+
+select name,region from country limit 10;
+select name,region from country order by name limit 10;
+select name,region from country order by name limit 10,10;
+select name,region from country order by name limit 1,1
+select name,region from country order by name desc  limit 1,3
+
+select name,region from country limit 238,1
+select name,region from country order by name limit 10 offset 5;
+select countrycode, count(*) from city group by countrycode;
+
+
+select countrycode,district, count(name) "No of Cities" from city 
+where countrycode in ('IND','USA') 
+group by countrycode,district 
+having count(name) > 20
+order by countrycode
+limit 4;
+
+
+select tlname ,sum(tsalary) total_salary, avg(tsalary) "Average", min(tsalary), max(tsalary),count(tsalary) from trainer group by tlname having count(tsalary) > 1;
+
+

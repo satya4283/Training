@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSSgrid2.css">
+    <title>Document</title>
+    <style>
+        .header {
+            grid-row: 1 / 2;
+            grid-column: 1 / 4;
+        }
+  
+        .sidebar {
+          grid-row: 2 /4;
+        }
+        
+        .content-1 {
+          grid-row: 2 / 3;
+          grid-column: 2 / 4;
+        }
+        
+        .content-2 {
+          grid-row: 3 / 4;
+          grid-column: 2 / 4;
+        }
+        
+        .content-3 {
+          grid-row: 3 / 4;
+          grid-column: 3 / 4;
+        }
+        
+        .footer {
+          grid-row: 4;
+          grid-column: 1/4;
+          background-color: black;
+          color: white;
+          text-align: center;
+        }
+
+
+        .gridcontainer {
+            display: grid;
+            grid-template-columns: 4;
+            grid-template-rows: 5;
+            gap: 5px;
+            margin-left: 300px;
+            margin-right: 250px;
+        }
+        ul {
+            list-style: none; 
+            display: flex;  
+        }
+       
+        .innerdiv{
+            background-color: skyblue;
+            color: black;
+            padding: 10px;
+        }
+        p{
+            text-align: center;
+        }
+        .innerdivs{
+            padding: 50px;
+            margin: 10px;
+            background-color: white;
+            color: black;
+        }
+        .c1{
+           padding:0px;
+           margin: 0px;
+        }
+        .c1l{
+            margin-right: 65px;
+        }
+  .item {
+    background-color: lightblue;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .content-1{
+    font-size: 20px;
+    background-color: blueviolet;
+  }
+  .sidebar{
+    background-color: lightgreen;
+  }
+  .header h5{
+    margin-right: 40px;
+  }
+  .header h3{
+    margin-left: 40px;
+  }
+  .header{
+    background-color: black;
+  }         
+    </style>
+</head>
+<body>
+
+    <div class="gridcontainer">
+        <div class="item header">
+            <h3 class="logo" ">Header Logo</h3>
+            <h5 style="margin-left: auto">link1</h5>
+            <h5>link1</h5>
+            <h5>link1</h5>                                                               
+            <h5>link1</h5>
+        </div>
+        <div class="item sidebar"> 
+            <table>
+                <tr>
+                    <td>
+                        <div class="innerdivs">
+                            image
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="innerdivs">
+                            Box 1
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="innerdivs">
+                            Box 2
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="innerdivs">
+                            Box 3
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="item content-1"> 
+            <ul class="c1">
+                <li class="c1l"><h5>Latest Articles</h5></li>
+                <li class="c1l"><h5>Most Viewed</h5></li>
+                <li class="c1l"><h5>Featured</h5></li>
+            </ul>
+        </div>
+        <div class="item content-2"> 
+            <table>
+                <tr>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="innerdiv">
+                            <center> Article Title</center>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, consequuntur autem. </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="footer"> <h3> Copyright</h3></div>
+      </div>
+</body>
+</html>

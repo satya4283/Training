@@ -1,0 +1,54 @@
+5.1 Select the name of all the pieces.
+
+	select *from pieces;
+
+5.2 Select all the providers' data.
+
+	select *from providers;
+
+5.3 Obtain the average price of each piece (show only the piece code and the average price).
+
+	select piece,avg(price) as avg_price from provides group by piece;
+
+5.4 Obtain the names of all providers who supply piece 1.
+
+	select pr.name from providers pr inner join provides p on p.provider=pr.Code where p.Piece = 1 ;
+
+5.5 Select the name of pieces provided by provider with code "HAL".
+
+	select p.name from pieces p inner join provides pr on pr.Piece = p.code where pr.provider ='HAL';
+
+5.6 select p.name,pr.name,o.price from pieces p
+    inner join
+    (
+    select
+    piece,
+    max(price) as max_price
+    from provides
+    group by piece
+    ) provides 
+    on p.code = provides.piece
+    inner join provides o
+    on provides.piece = o.piece AND provides.max_price = o.price
+    inner join providers pr
+    on o.provider = pr.code;
+
+5.7 Add an entry to the database to indicate that "Skellington Supplies" (code "TNBC") will provide sprockets (code "1") for 7 cents each.
+
+	insert into provides value(1,'TNBC',7);
+
+5.8 Increase all prices by one cent.
+
+	update provides set price=price+1;
+
+5.9 Update the database to reflect that "Susan Calvin Corp." (code "RBT") will not supply bolts (code 4).
+	
+    	 delete from provides where piece=4 and provider='rbt';
+
+5.10 Update the database to reflect that "Susan Calvin Corp." (code "RBT") will not supply any pieces 
+    (the provider should still remain in the database).
+    
+	 delete from provides where  provider='rbt';
+    
+
+

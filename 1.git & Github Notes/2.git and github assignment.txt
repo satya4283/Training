@@ -1,0 +1,35 @@
+Kindly write a git command execute it and take a screen shot and share in the classroom
+
+1. Create and intialize local git repository having 2 course files courses and students
+courses file will contain list of courses
+student file will contain list of students
+ 
+2. Add all the files into the staging area and commit the first draft
+
+3. Update the student file and add the student into it
+
+4. Add the updated file and create another commit
+
+5. Get the log of commits and show the diff between the 2 commits
+
+6. Use hard reset to make repository code to initial commit
+
+7. See the hard commit changed the student file to the original one
+
+8. Create a new branch with the name newcourses, newstudents
+
+9. Add the new course with 2 more courses and commit it in newcourses branch
+
+10. Add the 2 new students in the students file  and commit it in newstudents branch
+
+11. Merge the newcourses and newstudents branches with master branch
+
+12. Remove the branch newcourses and newstudents
+
+13. Create a remote link with your github account with new github repository
+
+14. Push the changes into your github repository
+
+15. Create new folder with the name backup in your harddrive and use pull command to get your remote repository from github repository
+
+16. Make few changes into the courses file and push it back to the github repository and observe that local repository and remote repository are synced

@@ -1,0 +1,98 @@
+8.1 Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform.
+
+	select p.Name from Physician p
+        inner join Undergoes u on p.EmployeeID = u.Physician
+        left join Trained_In ti on u.Procedures = ti.Treatment and p.EmployeeID = ti.Physician
+        where ti.Treatment IS NULL
+        group by p.EmployeeID
+
+8.2 Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.
+
+	select P.Name AS Physician, Pr.Name AS Procedures, U.Dateundergoes, Pt.Name AS Patient 
+	from Physician P, Undergoes U, Patient Pt, Procedures Pr
+	where U.Patient = Pt.SSN
+	and U.Procedures = Pr.Code
+	and U.Physician = P.EmployeeID
+	and not exists 
+	(
+	   SELECT * FROM Trained_In T
+	  WHERE T.Treatment = U.Procedures 
+	  AND T.Physician = U.Physician
+	);
+
+8.3 Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires).
+
+	select P.Name from Physician as P,Trained_In T,Undergoes as U
+ 	where T.Physician=U.Physician and T.Treatment=U.Procedures and U.Dateundergoes>T.CertificationExpires and P.EmployeeID=U.Physician
+
+8.4 Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.
+
+	select P.Name as Physician, Pr.Name as Procedures, U.Dateundergoes, Pt.Name as Patient, T.CertificationExpires
+  	from Physician P, Undergoes U, Patient Pt, Procedures Pr, Trained_In T
+  	where U.Patient = Pt.SSN
+        and U.Procedures = Pr.Code
+    	and U.Physician = P.EmployeeID
+    	and Pr.Code = T.Treatment
+    	and P.EmployeeID = T.Physician
+    	and U.Dateundergoes > T.CertificationExpires;
+
+8.5 Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.
+
+	select Pt.Name as Patient, Ph.Name as Physician, N.Name as Nurse, A.Start, A.End, A.ExaminationRoom, PhPCP.Name as PCP
+  	from Patient Pt, Physician Ph, Physician PhPCP, Appointment A left join Nurse N on A.PrepNurse = N.EmployeeID
+ 	where A.Patient = Pt.SSN
+   	and A.Physician = Ph.EmployeeID
+   	and Pt.PCP = PhPCP.EmployeeID
+   	and A.Physician <> Pt.PCP;
+
+8.6 The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.
+
+	select * from Undergoes U where Patient<>(select Patient from Stay S where U.Stay = S.StayID);
+
+8.7 Obtain the names of all the nurses who have ever been on call for room 123.
+
+	select N.Name from Nurse N
+ 	where EmployeeID IN
+   	(
+     	select OC.Nurse from On_Call OC, Room R
+      	where OC.BlockFloor = R.BlockFloor
+        and OC.BlockCode = R.BlockCode
+        and R.RoomNumber = 123
+   	);
+
+8.8 The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.
+
+	select examinationroom, count(appointmentiD) as Number from appointment group by examinationroom;
+
+8.9 Obtain the names of all patients (also include, for each patient, the name of the patient's primary care physician), such that \emph{all} the following are true:
+    -- The patient has been prescribed some medication by his/her primary care physician.
+    -- The patient has undergone a procedure with a cost larger that $5,000
+    -- The patient has had at least two appointment where the nurse who prepped the appointment was a registered nurse.
+    -- The patient's primary care physician is not the head of any department.
+
+	select Pt.Name, PhPCP.Name from Patient Pt, Physician PhPCP
+ 	where Pt.PCP = PhPCP.EmployeeID
+   	and exists
+       	(
+         select * from Prescribes Pr
+         where Pr.Patient = Pt.SSN
+         and Pr.Physician = Pt.PCP
+       	)
+   	and exists
+       	(
+         select * from Undergoes U, Procedures Pr
+         where U.Procedures = Pr.Code
+         and U.Patient = Pt.SSN
+         and Pr.Cost > 5000
+       	)
+   	and 2<=
+       (
+         select count(A.AppointmentID) from Appointment A, Nurse N
+         where A.PrepNurse = N.EmployeeID
+         and N.Registered = 1
+         and A.Patient = Pt.SSN
+       )
+   	and not Pt.PCP in
+       (
+          select Head from Department
+       );

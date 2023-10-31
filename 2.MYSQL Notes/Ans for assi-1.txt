@@ -1,0 +1,30 @@
+1. select *from hotels;
+   select h.Name,h.hotel_no,ro.room_no,ro.r_type,ro.price,h.city  from hotel h,room ro order by name;
+
+2. select *from hotel where city='new york';
+   select h.Name,h.hotel_no,ro.room_no,ro.r_type,ro.price,h.city from hotel h,room ro where h.city='new york' order by name;
+
+3. select name,city from guest order by city;
+
+4. select *from room where r_type='N' order by price;
+
+5. select count(*) from hotel;
+
+6. select distinct city from guest;
+
+7. select avg(price) from room;
+
+8. select h.Name,ro.room_no,ro.r_type from hotel h ,room ro order by h.Name; 
+
+9. select h.hotel_name,b.date_from,b.room_no from hotel h inner join booking b using(hotel_no)  where h.city='new york';
+
+10. select count(date_from) from booking where month(date_from)>=09;
+    
+11. select gu.g_name,gu.city from guest gu inner join booking b using(guest_no) inner join hotel h using(hotel_no) where h.city='new york' and month(b.date_from)=08;
+
+12. select h.hotel_name, r.room_no from hotel h inner join room r on h.hotel_no = r.hotel_no where r.room_no not in (select room_no from booking);
+
+13. select h.hotel_name,h.city from hotel h inner join room r order by price desc limit 1;
+
+15.select h.city,avg(r.price) from hotel h inner join room r using(hotel_no) group by h.city;
+

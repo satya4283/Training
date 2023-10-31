@@ -1,0 +1,17 @@
+MYSQL Assignment 2
+Iexcel Always
+•
+Oct 16 (Edited Oct 16)
+100 points
+1. Find the number of Male (M) and Female (F) employees in the database and order the counts in descending order
+2. Display the month and total hires for the month with the most hires from the table employee
+3. # Retrieve list of all female employees whose first name is either 'Kellie' or 'Aruna'
+4. # Select names of all departments between department numbers d003 and d006
+5. # Select employee numbers of all individuals who have signed more than one contract after 2000-01-01
+6. # Select all female employees in the the year 2000 or after
+7. Find the average salary by employee title, round to 2 decimal places and order by descending order.
+8. Find all the employees that have worked in at least 2 departments. Show their first name, last_name and the number of departments they work in. Display all results in ascending order.
+9. Display the first name, last name, and salary of the highest payed employee.
+10. Display the first name, last name, and salary of the second highest payed employe
+11. Display each department and the age of the youngest employee at hire date.
+12. Find all the employees that do not contain vowels in their first name and display the department they work in.

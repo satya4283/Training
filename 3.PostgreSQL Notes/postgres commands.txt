@@ -1,0 +1,280 @@
+postgres commands
+Iexcel Always
+•
+3:30 PM
+connect to a database in postgres
+\c dvdrental
+
+to find all the tables insdie the database dvdrental
+\dt or \dt+
+
+to describe the specific customer table in database
+\d customer \d+ customer
+
+select * from customer
+
+select first_name, last_name from customer
+
+select first_name || ' ' || last_name as fullname from customer
+
+select 15*20
+
+select first_name || ' ' || last_name fullname from customer
+order by first_name asc;
+
+select first_name || ' ' || last_name fullname from customer
+order by first_name desc;
+
+select first_name || ' ' || last_name fullname from customer
+order by first_name asc, last_name desc;
+
+select first_name ,len(first_name) from customer
+
+select first_name ,length(first_name) len from customer
+order by len desc
+
+create table scores
+(num int)
+
+insert into scores(num) values (181),(264),(223),(null)
+
+select num from scores
+order by num nulls last
+
+select num from scores
+order by num nulls first
+
+select distinct customer_id from payment;
+
+select distinct customer_id,staff_id from payment;
+
+select distinct customer_id,staff_id from payment
+order by customer_id;
+
+select * from customer where first_name = 'Jamie'
+
+select * from customer where first_name = 'Jamie' and last_name='Waugh'
+
+select first_name , last_name from customer where last_name = 'Rodriguez' or first_name = 'Adam'
+
+select * from customer where first_name in ('Ann','Anne','Annie')
+
+select * from city where city like 'al%'
+
+select * from city where country_id between 91 and 95
+
+select * from city where city <> 'Lungtan'  and country_id between 91 and 95
+
+select * from city where city <> 'Lungtan'  and country_id between 91 and 95 limit 10
+
+select film_id,title from film order by title fetch first row only
+
+select film_id,title from film order by title fetch first 5 row only
+
+
+select film_id,title from film order by film_id offset 2 fetch first 5 row only
+
+select customer_id from rental
+where cast(return_Date as Date)= '2005-05-27'
+
+select a,fruit_a,b,fruit_b from basket_A
+inner join basket_b on fruit_a = fruit_b
+
+
+select a,fruit_a,b,fruit_b from basket_A
+left join basket_b on fruit_a = fruit_b
+
+
+select a,fruit_a,b,fruit_b from basket_A
+right join basket_b on fruit_a = fruit_b
+
+select a,fruit_a,b,fruit_b from basket_A
+full outer join basket_b on fruit_a = fruit_b
+
+select a,fruit_a,b,fruit_b from basket_A
+full join basket_b on fruit_a = fruit_b
+where fruit_A is null or fruit_b is null
+
+
+select customer.customer_id,
+first_name,
+last_name,
+amount,
+payment_date
+from  customer inner join payment
+on customer.customer_id = payment.customer_id
+order by payment_date
+
+select customer.customer_id,
+first_name,
+last_name,
+amount,
+payment_date
+from  customer inner join payment
+using(customer_id)
+where customer_id = 2
+order by payment_date
+
+
+select c.customer_id,
+c.first_name customer_first_name,
+c.last_name customer_last_name,
+s.first_name staff_first_name,
+s.last_name staff_last_name,
+amount,
+payment_date
+from customer c
+inner join payment p
+on p.customer_id = c.customer_id
+inner join staff s
+on p.staff_id = s.staff_id
+order by payment_date
+
+
+select film.film_id,
+tilte,
+inventory_id
+from film
+left join
+inventory
+on inventory.film_id = film.film_id
+order by title
+
+select film.film_id,
+tilte,
+inventory_id
+from film
+left join
+inventory
+on inventory.film_id = film.film_id
+order by title
+
+
+select f.actor_id, first_name,last_name , film_id from
+film_actor fa right join film f on fa.actor_id = f.actor_id
+
+select staff_id, first_name,last_name , manager_staff_id from
+store fa right join staff f on fa.manager_staff_id= f.staff_id
+
+select customer_id, sum(amount)  from payment
+group by customer_id
+
+select customer_id, sum(amount)  from payment
+group by customer_id
+
+select first_name || ' ' || last_name as fullname ,sum(amount)
+from payment inner join customer using(customer_id)
+group by fullname
+order by sum(amount) desc
+
+select first_name || ' ' || last_name as fullname ,sum(amount)
+from payment inner join customer using(customer_id)
+group by fullname
+having sum(amount) > 150
+order by sum(amount) desc
+
+
+select fruit_a from basket_A
+union
+select fruit_b from basket_B
+
+select fruit_a from basket_A
+union all
+select fruit_b from basket_B
+
+select fruit_a from basket_A
+intersect
+select fruit_b from basket_B
+
+select fruit_a from basket_A
+except
+select fruit_b from basket_B
+
+
+select fruit_b from basket_B
+except
+select fruit_a from basket_A
+
+
+
+
+
+create table students
+(student_id serial primary key,
+name varchar unique,
+email varchar not null,
+active bool not null default true
+);
+
+
+insert into students(name,email)
+values
+('Steve','contacs@gmail.com'),
+('Tim','tim@gmail.com'),
+('Rebecca','reb@gmail.com');
+
+insert into students(name,email)
+values
+('Steves','steves@gmail.com')
+on conflict on constraint students_name_key
+do nothing;
+
+alter table students
+add constraint fees_discount_check
+check(
+    fees_paid > 0
+)
+
+
+update students
+set fees_paid = 10000
+where name = 'Steve'
+
+
+update students
+set fees_paid = 1000
+where name = 'Rebecca'
+
+update students
+set fees_paid = 1000
+where name = 'Rebecca'
+
+
+create table orders (
+id serial not null primary key,
+info json not null
+)
+
+insert into orders (info)
+values
+('{"customer": "Lilly Bush",
+"items" : {"product":"Toothbrush", "qty":24, "price":499}}')
+
+
+insert into orders (info)
+values
+('{"customer": "Josh William",
+"items" : {"product":"Toy Car", "qty":1, "price":1499}}'),
+('{"customer": "Mary Clark",
+"items" : {"product":"Toy Train", "qty":2, "price":1000}}')
+
+
+
+select info->'customer' as "Customer Name" , info->'items'->'product' as "Item Name" from orders;
+
+
+select info->'customer' as "Customer Name" , info->>'product' as "Item Name" from orders;
+
+select json_each(info) from orders;
+
+select json_object_keys(info) from orders;
+
+select json_typeof(info->'items') , json_typeof(info->'items'->'qty')
+from orders
+
+select info->'customer' as "Customer Name" , info->'items'->>'product' as "Item Name" from orders;
+
+
+select info->>'customer' as "customer name"
+from orders
+where info->'items'->>'product' = 'Toy Car'
